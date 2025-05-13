@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from api_keys import SHEET_ID
 
 # code taken from this tutorial:
 # YT: https://www.youtube.com/watch?v=zCEJurLGFRk
@@ -8,7 +9,6 @@ scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
 client = gspread.authorize(creds)
 
-SHEET_ID = "1Ajakctt9hGfP8Anwg3d7xiGS8cemBf5R3QyIcuq-fQA"
 sheet = client.open_by_key(SHEET_ID)
 sheet = sheet.sheet1 # access first tab of the excel
 
@@ -71,3 +71,8 @@ def update_task(task):
 ## 2. UI changes --> back end updates
 ##    if someone adds a task from the front end, it will trigger this 
 ## 3. stretch goal: ops plan changes --> back end changes
+
+
+#  changes necessary for real world deployment:
+## factor out sheets ID to for start up's google sheet & make private / add to .gitignore
+## 
