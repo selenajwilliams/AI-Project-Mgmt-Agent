@@ -6,7 +6,7 @@ import os
 
 # === GOOGLE SHEET CONFIG ===
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-CREDS = Credentials.from_service_account_file("../credentials.json", scopes=SCOPES)
+CREDS = Credentials.from_service_account_file("/etc/secrets/credentials.json", scopes=SCOPES)
 CLIENT = gspread.authorize(CREDS)
 SHEET_ID = OPENAI_API_KEY = os.environ[""]
 
