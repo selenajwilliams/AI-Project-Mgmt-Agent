@@ -8,7 +8,7 @@ import os
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 CREDS = Credentials.from_service_account_file("/etc/secrets/credentials.json", scopes=SCOPES)
 CLIENT = gspread.authorize(CREDS)
-SHEET_ID = OPENAI_API_KEY = os.environ[""]
+SHEET_ID = os.environ["SHEET_ID"]
 
 SHEET = CLIENT.open_by_key(SHEET_ID).sheet1
 
