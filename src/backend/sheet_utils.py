@@ -1,12 +1,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import os
-# from api_keys import SHEET_ID
-
 
 # === GOOGLE SHEET CONFIG ===
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-
 
 
 credentials_path = "/etc/secrets/credentials.json"
@@ -16,6 +13,7 @@ CREDS = Credentials.from_service_account_file(credentials_path, scopes=SCOPES)
 # CREDS = Credentials.from_service_account_file("/etc/secrets/credentials.json", scopes=SCOPES)
 CLIENT = gspread.authorize(CREDS)
 SHEET_ID = os.environ["SHEET_ID"]
+
 
 SHEET = CLIENT.open_by_key(SHEET_ID).sheet1
 
