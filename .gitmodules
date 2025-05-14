@@ -1,0 +1,3 @@
+[submodule "src/vercel-pm-frontend"]
+	path = src/vercel-pm-frontend
+	url = https://github.com/selenajwilliams/vercel-pm-frontend.git
