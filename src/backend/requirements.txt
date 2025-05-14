@@ -5,3 +5,4 @@ gspread
 Flask
 openai
 flask_cors
+Gunicorn

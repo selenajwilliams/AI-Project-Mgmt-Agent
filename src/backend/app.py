@@ -1,16 +1,20 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from sheet_utils import read_sheet, update_task, prioritize_sheet
 from llm_utils import prioritize
 from flask_cors import CORS
+# import gunicorn
 import uuid  # For generating unique IDs in add-task 
 TEST = False
+LOCAL_DEPLOY = False
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
 def index():
-    return "API is running! Go to /api/tasks to read, prioritize, and return tasks"
+    data = "API is running! Go to /api/tasks to read, prioritize, and return tasks\n"
+    return Response(data, status=200, mimetype="text/plain")
+
 
 @app.route("/api/get-tasks", methods=["GET"])
 def get_tasks():
@@ -90,9 +94,14 @@ def update_task_route():
     prioritize_sheet(prioritized)
     return jsonify({"message": "Updated and reprioritized"})
 
-if __name__ == "__main__":
 
+# error handling
+@app.errorhandler(500)
+def internal_error(e):
+    return jsonify({"error": "Internal Server Error"}), 500
+
+if __name__ == "__main__":
     if TEST:
-        app.run(debug=True, port=5000)
+        app.run(debug=LOCAL_DEPLOY, port=5000)
     else:
-        app.run(debug=True, port=5000)
+        app.run(debug=LOCAL_DEPLOY, port=5000)
