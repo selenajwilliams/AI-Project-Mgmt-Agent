@@ -2,4 +2,3 @@
 backend/env/
 backend/api_keys.py
 backend/__pycache__
-frontend/app/page.tsx
