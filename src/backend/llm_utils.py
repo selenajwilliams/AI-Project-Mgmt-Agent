@@ -1,13 +1,10 @@
 from openai import OpenAI
-from api_keys import OPENAI_API_KEY
 import sys
 import pprint
 
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 import os
-from api_keys import OPENAI_API_KEY
-
-# openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def prioritize(tasks: list[list[str]]) -> list[list[str]]:
     prompt = "Prioritize the following tasks from most to least important. Return only the ordered list of IDs:\n\n"
