@@ -11,6 +11,7 @@ if not os.path.exists(credentials_path):
     raise RuntimeError(f"Missing secret file at {credentials_path}")
 CREDS = Credentials.from_service_account_file(credentials_path, scopes=SCOPES)
 # CREDS = Credentials.from_service_account_file("/etc/secrets/credentials.json", scopes=SCOPES)
+
 CLIENT = gspread.authorize(CREDS)
 SHEET_ID = os.environ["SHEET_ID"]
 
